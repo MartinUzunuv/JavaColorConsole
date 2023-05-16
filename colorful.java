@@ -29,7 +29,7 @@ public class colorful {
         String field[][] = new String[maxX][maxY];
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
-            int n = 0;
+            double n = 0;
             @Override
             public void run() {  //this function will be repeated as frames
 //                System.out.print("\033[H\033[2J");
@@ -41,7 +41,7 @@ public class colorful {
 //                        if (x + y > n) {
 //                            element += blue;
 //                        }
-                        if(Math.sin(x/4)*3+5>y){
+                        if(Math.sin(x/4+n)*3+5>y){
                             element += blue;
                         }
                         element += "@"; //string (one element recommended)
@@ -50,10 +50,10 @@ public class colorful {
                     }
                     l("");
                 }
-                n++;
+                n+=0.2;
             }
 
 
         };
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        timer.scheduleAtFixedRate(task, 0, 500);
 }}
