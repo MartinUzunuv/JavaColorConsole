@@ -31,7 +31,8 @@ public class az {
         System.out.println(s);
     }
 
-    public static pixel[][] arr = new pixel[160][12];
+    //FIELD SIZE:
+    public static pixel[][] arr = new pixel[160][20];
 
     public static void fill(int startX, int startY, int endX, int endY, String color){
         for(int x = startX; x < endX; x++){
@@ -74,9 +75,9 @@ public class az {
         int maxX = arr.length;
         int maxY = arr[0].length;
         String field[][] = new String[maxX][maxY];
-        fill(0,0,160,12,white);
-//        fill(10,2,20,5,red);
-//        fill(30,4,60,10,blue);
+        fill(0,0,arr.length,arr[1].length,white);
+        double maxXB = (double) arr.length/2;
+        double maxYB = (double) arr[0].length;
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             //INIT-------------------------------------------------------------------------------------------------------->
@@ -91,13 +92,6 @@ public class az {
                         int intX = (int) x;
                         int intY = (int) y;
                         String element = "";
-//                        element += red; //color
-////                        if (x + y > n) {
-////                            element += blue;
-////                        }
-//                        if(Math.sin(x/4+n)*3+5>y){
-//                            element += blue;
-//                        }
                         element+= arr[intX][intY].color;
                         element += "@"; //string (one element recommended)
                         element += reset;
@@ -105,11 +99,12 @@ public class az {
                     }
                     l("");
                 }
-                fill(0,0,160,12,white);
+                //background color
+                fill(0,0,maxX,maxY,black);
                 //UPDATE & DRAW------------------------------------------------------------------------------------------->
 
                 for(double a = 0; a < Math.PI*50; a+=Math.PI/400){
-                    fillB(Math.cos(a)*0.5*a+20, Math.sin(a)*0.5*a+7,1, 1, blue);
+                    fillB(Math.cos(a)*0.5*a+30, Math.sin(a)*0.5*a+7,1, 1, blue);
                 }
 
 
@@ -120,5 +115,5 @@ public class az {
 
 
         };
-        timer.scheduleAtFixedRate(task, 0, 500);
+        timer.scheduleAtFixedRate(task, 0, 5000);
     }}
