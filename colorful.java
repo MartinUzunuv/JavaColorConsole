@@ -36,7 +36,33 @@ public class az {
     public static void fill(int startX, int startY, int endX, int endY, String color){
         for(int x = startX; x < endX; x++){
             for(int y = startY; y < endY; y++){
-                arr[x][y] = new pixel(x,y,color);
+                if(x<arr.length && y<arr[1].length&&x>=0&&y>=0){
+                    arr[x][y] = new pixel(x,y,color);
+                }
+            }
+        }
+    }
+
+    public static void fillB(double startX, double startY, double endX, double endY, String color){
+        double oldX1 = startX*2.5;
+        int x1 = (int) oldX1;
+        double oldX2 = endX*2.5;
+        int x2 = (int) oldX2;
+        int y1 = (int) startY;
+        int y2 = (int) endY;
+        x2 += x1;
+        y2 += y1;
+        if(x1 < x2){
+            if(y1 < y2){
+                fill(x1,y1,x2,y2,color);
+            }else{
+                fill(x1,y2,x2,y1,color);
+            }
+        }else{
+            if(y1 < y2){
+                fill(x2,y1,x1,y2,color);
+            }else{
+                fill(x2,y2,x1,y1,color);
             }
         }
     }
@@ -48,12 +74,14 @@ public class az {
         int maxX = arr.length;
         int maxY = arr[0].length;
         String field[][] = new String[maxX][maxY];
-        fill(0,0,160,12,green);
-        fill(10,2,20,5,red);
-        fill(30,4,60,10,blue);
+        fill(0,0,160,12,white);
+//        fill(10,2,20,5,red);
+//        fill(30,4,60,10,blue);
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
-            double n = 0;
+            //INIT-------------------------------------------------------------------------------------------------------->
+
+            //------------------------------------------------------------------------------------------------------------>
             @Override
             public void run() {  //this function will be repeated as frames
                 System.out.print("\033[H\033[2J");
@@ -77,7 +105,17 @@ public class az {
                     }
                     l("");
                 }
-                n+=0.2;
+                fill(0,0,160,12,white);
+                //UPDATE & DRAW------------------------------------------------------------------------------------------->
+
+                for(double a = 0; a < Math.PI*50; a+=Math.PI/400){
+                    fillB(Math.cos(a)*0.5*a+20, Math.sin(a)*0.5*a+7,1, 1, blue);
+                }
+
+
+
+
+                //-------------------------------------------------------------------------------------------------------->
             }
 
 
