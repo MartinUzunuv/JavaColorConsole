@@ -32,7 +32,7 @@ public class az {
     }
 
     //FIELD SIZE:
-    public static pixel[][] arr = new pixel[160][20];
+    public static pixel[][] arr = new pixel[160][12];
 
     public static void fill(int startX, int startY, int endX, int endY, String color){
         for(int x = startX; x < endX; x++){
@@ -81,12 +81,14 @@ public class az {
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             //INIT-------------------------------------------------------------------------------------------------------->
-
+            double n = 0;
             //------------------------------------------------------------------------------------------------------------>
             @Override
             public void run() {  //this function will be repeated as frames
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
+                l("");
+                l("");
                 for (double y = 0; y < maxY; y++) {
                     for (double x = 0; x < maxX; x++) {
                         int intX = (int) x;
@@ -104,10 +106,10 @@ public class az {
                 //UPDATE & DRAW------------------------------------------------------------------------------------------->
 
                 for(double a = 0; a < Math.PI*50; a+=Math.PI/400){
-                    fillB(Math.cos(a)*0.5*a+30, Math.sin(a)*0.5*a+7,1, 1, blue);
+                    fillB(Math.cos(a+n)*0.5*a+30, Math.sin(a+n)*0.5*a+7,1, 1, blue);
                 }
 
-
+                n+=0.3;
 
 
                 //-------------------------------------------------------------------------------------------------------->
@@ -115,5 +117,5 @@ public class az {
 
 
         };
-        timer.scheduleAtFixedRate(task, 0, 5000);
+        timer.scheduleAtFixedRate(task, 0, 500);
     }}
