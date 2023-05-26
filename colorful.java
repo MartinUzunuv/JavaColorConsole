@@ -62,7 +62,7 @@ public class colorfull {
         int maxX = arr.length;
         int maxY = arr[0].length;
         fill(0,0,arr.length,arr[1].length,white);
-        double maxXB = (double) arr.length/2;
+        double maxXB = (double) arr.length/2.5;
         double maxYB = (double) arr[0].length;
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
